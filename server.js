@@ -22,10 +22,11 @@ app.get("/", function (req, res) {
 
 
 
-// your first API endpoint... 
+/*/ your first API endpoint... 
 app.get("/api/hello", function (req, res) {
   res.status(200).json({greeting: 'hello API'});
 });
+//*/
 app.get('/api/', (req, res) => {
   //returns milliseconds
   const dNow = Date.now();
