@@ -53,7 +53,15 @@ app.get('/api/:timeString', (req, res) => {
     return res.status(200).json({unix, utc});
   }
   else {
-    return res.status(400).json({error: "Invalid Date"});
+    const date = new Date(time);
+    
+    if (date.toString === 'Invalid Date'){
+      return res.status(400).json({error: "Invalid Date"});
+    }
+    const utc = date.toUTCString();
+    const unix = date.getTime();
+    return res.status(200).json({unix, utc});
+    
   }
 });
 
