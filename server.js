@@ -26,14 +26,14 @@ app.get("/", function (req, res) {
 app.get("/api/hello", function (req, res) {
   res.status(200).json({greeting: 'hello API'});
 });
-app.get('/api/timestamp/', (req, res) => {
+app.get('/api/', (req, res) => {
   //returns milliseconds
   const dNow = Date.now();
   const date = new Date();
   const utc = date.toUTCString();
   res.status(200).json({unix: dNow, utc});
 });
-app.get('/api/timestamp/:timeString', (req, res) => {
+app.get('/api/:timeString', (req, res) => {
 
   const regexFormat1 = new RegExp(/^\d{0,16}$/); 
   const regexFormat2 = new RegExp(/^\d{4}\-\d{2}\-\d{2}$/);
@@ -53,7 +53,7 @@ app.get('/api/timestamp/:timeString', (req, res) => {
     return res.status(200).json({unix, utc});
   }
   else {
-    return res.status(400).json({message: "please enter a valid date format: YYYY-MM-DD or #milliseconds (less than 17 digits)"});
+    return res.status(400).json({error: "Invalid Date"});
   }
 });
 
